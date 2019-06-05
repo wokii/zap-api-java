@@ -35,7 +35,7 @@ public class SimpleExample {
     private static final String ZAP_ADDRESS = "localhost";
     private static final int ZAP_PORT = 8090;
     private static final String ZAP_API_KEY =
-            null; // Change this if you have set the apikey in ZAP via Options / API
+            null; // is defaultly set to null, change if you have set the apikey in ZAP via Options / API
 
     private static final String TARGET = "localhost";
 
@@ -43,10 +43,7 @@ public class SimpleExample {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
 
         try {
-            // Start spidering the target
             System.out.println("Spider : " + TARGET);
-            // It's not necessary to pass the ZAP API key again, already set when creating the
-            // ClientApi.
             ApiResponse resp = api.spider.scan(TARGET, null, null, null, null);
             String scanid;
             int progress;
@@ -54,7 +51,6 @@ public class SimpleExample {
             // The scan now returns a scan id to support concurrent scanning
             scanid = ((ApiResponseElement) resp).getValue();
 
-            // Poll the status until it completes
             while (true) {
                 Thread.sleep(1000);
                 progress =
@@ -67,7 +63,7 @@ public class SimpleExample {
             }
             System.out.println("Spider complete");
 
-            // Give the passive scanner a chance to complete
+            // let passive scanner have anough time to complete
             Thread.sleep(2000);
 
             System.out.println("Active scan : " + TARGET);
