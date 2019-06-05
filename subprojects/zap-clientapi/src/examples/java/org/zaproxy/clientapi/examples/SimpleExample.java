@@ -37,7 +37,7 @@ public class SimpleExample {
     private static final String ZAP_API_KEY =
             null; // Change this if you have set the apikey in ZAP via Options / API
 
-    private static final String TARGET = "http://localhost:8080/bodgeit/";
+    private static final String TARGET = "localhost";
 
     public static void main(String[] args) {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
